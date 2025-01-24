@@ -1,0 +1,35 @@
+-- LocalScript inside StarterPlayer -> StarterPlayerScripts
+
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+local playerName = localPlayer.Name
+
+-- Create GUI
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = localPlayer.PlayerGui
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 300, 0, 150)
+frame.Position = UDim2.new(0.5, -150, 0.5, -75)
+frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+frame.Parent = screenGui
+
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(0, 200, 0, 50)
+button.Position = UDim2.new(0.5, -100, 0.5, -25)
+button.Text = "Kick Other Players"
+button.TextColor3 = Color3.fromRGB(255, 255, 255)
+button.BackgroundColor3 = Color3.fromRGB(0, 204, 255)
+button.Parent = frame
+
+-- Function to kick other players except the specified ones
+local function kickPlayers()
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player.Name ~= "collljamesbroalt1" and player.Name ~= "Sidjndnxnxnx" and player ~= localPlayer then
+            player:Kick("You have been kicked by the game.")
+        end
+    end
+end
+
+-- Button click event
+button.MouseButton1Click:Connect(kickPlayers)
